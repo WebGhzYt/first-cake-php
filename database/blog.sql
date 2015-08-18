@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2015 at 10:07 AM
+-- Generation Time: Aug 18, 2015 at 03:00 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(9, 'Inputer'),
 (10, 'Outputer');
 
 -- --------------------------------------------------------
@@ -57,12 +56,12 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `mobile`, `user_id`) VALUES
-(1, 'Rohit', '8946919241', 3),
-(2, 'Shubham', '8561849825', 0),
-(3, 'test', '8585858585', 6),
-(4, 'asdfasdf', '232323', 10),
+(1, 'Rohit', '8946919241', 37),
+(2, 'Shubham', '8561849825', 38),
+(3, 'test', '8585858585', 39),
+(4, 'asdfasdf', '232323', 40),
 (6, 'ssssssss', '222222222', 2),
-(7, 'dfsgsdfgsdgfsdgf', '356345', 10);
+(7, 'dfsgsdfgsdgfsdgf', '356345', 40);
 
 -- --------------------------------------------------------
 
@@ -102,15 +101,20 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `image_url` varchar(255) NOT NULL,
   `created` date NOT NULL,
   `modified` date NOT NULL,
-  `category_id` int(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `category_id` int(20) NOT NULL,
+  `user_id` int(4) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `body`, `image_url`, `created`, `modified`, `category_id`) VALUES
-(19, 'it''s give u chance', 'it''s body part', '', '2015-08-17', '2015-08-17', 10);
+INSERT INTO `posts` (`id`, `title`, `body`, `image_url`, `created`, `modified`, `category_id`, `user_id`) VALUES
+(20, 'it''s final edit ver', 'it''s final edit ver body', '', '2015-08-18', '2015-08-18', 9, 2),
+(21, 'asdfsdf', 'asdfasdfadsf', '', '2015-08-18', '2015-08-18', 9, 37),
+(22, 'asdfasdfasdf', 'adsfasdf', '', '2015-08-18', '2015-08-18', 9, 2),
+(23, 'asdfasdfasdf', 'asdfasdf', '', '2015-08-18', '2015-08-18', 10, 2),
+(24, 'dsfasdf', 'asdfasdfasdf', '', '2015-08-18', '2015-08-18', 10, 2);
 
 -- --------------------------------------------------------
 
@@ -128,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -137,7 +141,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `image_url`, `role`, `created`, `modified`, `status`) VALUES
 (2, 'user3', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'bbbbb@bbbbb.com', 'ppppp@pp.com_icoFacebbok.png', 'admin', '2015-08-13 08:32:50', '2015-08-14 07:37:33', 1),
 (37, 'oneone', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'one@one.co', 'Capture123.PNG', 'king', '2015-08-18 09:26:05', '2015-08-18 09:29:30', 1),
-(38, 'twotwo', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'twotwo@twotwo.com', 'twotwo@twotwo.com_', 'bishop', '2015-08-18 09:27:54', '2015-08-18 09:27:54', 1);
+(38, 'twotwo', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'twotwo@twotwo.com', 'twotwo@twotwo.com_', 'bishop', '2015-08-18 09:27:54', '2015-08-18 09:27:54', 1),
+(39, 'hellow', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'hellow@hellow.com', 'hellow@hellow.com_icoFacebbok.png', 'pawn', '2015-08-18 12:56:50', '2015-08-18 12:56:50', 1),
+(40, 'helloo', '6db5e7b79808c277352a2ed2ea481ce787617e85', 'helloo@helloo.com', 'helloo@helloo.com_1.docx', 'rook', '2015-08-18 12:57:34', '2015-08-18 12:57:34', 1);
 
 -- --------------------------------------------------------
 
@@ -213,12 +219,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-MODIFY `id` int(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id` int(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `welcomes`
 --
