@@ -21,6 +21,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 App::uses('Controller', 'Controller');
+//App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller
@@ -38,7 +39,8 @@ class AppController extends Controller {
 	// authorization for login and logut redirect	
 	public $components = array(		
 		'Session',
-		'DebugKit.Toolbar',		
+		'DebugKit.Toolbar',
+		'Email',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'users', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),

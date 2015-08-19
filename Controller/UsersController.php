@@ -1,6 +1,9 @@
 <?php 
 	class UsersController extends AppController {
  
+
+	var $components = array('Email');
+	
     public $paginate = array(
         'limit' => 25,
         'conditions' => array('status' => '1'),
@@ -13,6 +16,30 @@
 		$this->Auth->allow('add');
     }
      
+	public function send_email($dest=null)
+	{
+		/*
+			$Email = new CakeEmail();
+			$Email->from(array('engrohitjain5@gmail.com' => 'My Site'));
+			$Email->to($dest);
+			$Email->subject('Automagically generated email');	
+			$Email->sender('engrohitjain5@gmail.com', 'MyApp');			
+			//print_r($Email);exit();
+			return;
+		//$this->redirect(array('action' => 'index')); */
+		
+		$emailValues=array('name'=>'MyName','phone'=>'MyPhone');
+		$this->set('emailValues',$emailValues);//pass to template //
+		$this->Email->to = 'infomailboxaj@gmail.com'; //receiver email id
+		$this->Email->subject = 'Subject Line';
+		$this->Email->replyTo = 'engrohitjain5@gmail.com'; //reply to email//
+		$this->Email->from = 'engrohitjain5@gmail.com'; //sender
+		$this->Email->template = 'mytemplate';//email template //
+		$this->Email->sendAs = 'html';
+		$this->Email->send();
+		//print_r($this->Email);exit();
+	}
+	
 	public function admin_dashboard() {
         $title_for_layout = 'Dashbord';
         $this->set(compact('title_for_layout'));
@@ -42,6 +69,7 @@
     }
  
     public function login() {
+		
          
         //if already logged-in, redirect
         if($this->Session->check('Auth.User')){
@@ -51,6 +79,10 @@
         // if we get the post information, try to authenticate
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+				
+				$this->send_email("infomailboxaj@gmail.com");				
+				
+				
                 $this->Session->setFlash(__('Welcome, '. (strtoupper($this->Auth->user('username')))));$this->redirect(array('action' => 'index'));;
             } else {
                 $this->Session->setFlash(__('Invalid username or password'));
@@ -82,9 +114,8 @@
  
  
     public function add() {
-        if ($this->request->is('post')) {
+        if ($this->request->is('post')) {			
             $this->User->create();
-			
 			/*if (!empty($this->params['form']) && 
              is_uploaded_file($this->params[’form’][’User][’tmp_name’]))
 			{*/
