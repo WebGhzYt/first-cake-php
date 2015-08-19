@@ -1,0 +1,5 @@
+.sign_up_modal .modal-dialog {
+  width: 450px;
+  z-index: 99999999999;
+  margin:30px auto;
+}
